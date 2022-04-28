@@ -1,4 +1,4 @@
-# db_assets_folder_sample
+# TG用初級編課題アプリ
 
 A new Flutter application.
 

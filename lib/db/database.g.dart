@@ -2,11 +2,159 @@
 
 part of 'database.dart';
 
-// **************************************************************************
-// MoorGenerator
-// **************************************************************************
+// ignore_for_file: type=lint
+class $QuestionsTable extends Questions
+    with TableInfo<$QuestionsTable, Question> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $QuestionsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+      'id', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _questionMeta =
+      const VerificationMeta('question');
+  @override
+  late final GeneratedColumn<String> question = GeneratedColumn<String>(
+      'question', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _answerMeta = const VerificationMeta('answer');
+  @override
+  late final GeneratedColumn<String> answer = GeneratedColumn<String>(
+      'answer', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _choice1Meta =
+      const VerificationMeta('choice1');
+  @override
+  late final GeneratedColumn<String> choice1 = GeneratedColumn<String>(
+      'choice1', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _choice2Meta =
+      const VerificationMeta('choice2');
+  @override
+  late final GeneratedColumn<String> choice2 = GeneratedColumn<String>(
+      'choice2', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _choice3Meta =
+      const VerificationMeta('choice3');
+  @override
+  late final GeneratedColumn<String> choice3 = GeneratedColumn<String>(
+      'choice3', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _explanationMeta =
+      const VerificationMeta('explanation');
+  @override
+  late final GeneratedColumn<String> explanation = GeneratedColumn<String>(
+      'explanation', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _isCorrectMeta =
+      const VerificationMeta('isCorrect');
+  @override
+  late final GeneratedColumn<bool> isCorrect =
+      GeneratedColumn<bool>('is_correct', aliasedName, false,
+          type: DriftSqlType.bool,
+          requiredDuringInsert: false,
+          defaultConstraints: GeneratedColumn.constraintsDependsOnDialect({
+            SqlDialect.sqlite: 'CHECK ("is_correct" IN (0, 1))',
+            SqlDialect.mysql: '',
+            SqlDialect.postgres: '',
+          }),
+          defaultValue: Constant(false));
+  @override
+  List<GeneratedColumn> get $columns =>
+      [id, question, answer, choice1, choice2, choice3, explanation, isCorrect];
+  @override
+  String get aliasedName => _alias ?? 'questions';
+  @override
+  String get actualTableName => 'questions';
+  @override
+  VerificationContext validateIntegrity(Insertable<Question> instance,
+      {bool isInserting = false}) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('question')) {
+      context.handle(_questionMeta,
+          question.isAcceptableOrUnknown(data['question']!, _questionMeta));
+    } else if (isInserting) {
+      context.missing(_questionMeta);
+    }
+    if (data.containsKey('answer')) {
+      context.handle(_answerMeta,
+          answer.isAcceptableOrUnknown(data['answer']!, _answerMeta));
+    } else if (isInserting) {
+      context.missing(_answerMeta);
+    }
+    if (data.containsKey('choice1')) {
+      context.handle(_choice1Meta,
+          choice1.isAcceptableOrUnknown(data['choice1']!, _choice1Meta));
+    } else if (isInserting) {
+      context.missing(_choice1Meta);
+    }
+    if (data.containsKey('choice2')) {
+      context.handle(_choice2Meta,
+          choice2.isAcceptableOrUnknown(data['choice2']!, _choice2Meta));
+    } else if (isInserting) {
+      context.missing(_choice2Meta);
+    }
+    if (data.containsKey('choice3')) {
+      context.handle(_choice3Meta,
+          choice3.isAcceptableOrUnknown(data['choice3']!, _choice3Meta));
+    } else if (isInserting) {
+      context.missing(_choice3Meta);
+    }
+    if (data.containsKey('explanation')) {
+      context.handle(
+          _explanationMeta,
+          explanation.isAcceptableOrUnknown(
+              data['explanation']!, _explanationMeta));
+    } else if (isInserting) {
+      context.missing(_explanationMeta);
+    }
+    if (data.containsKey('is_correct')) {
+      context.handle(_isCorrectMeta,
+          isCorrect.isAcceptableOrUnknown(data['is_correct']!, _isCorrectMeta));
+    }
+    return context;
+  }
 
-// ignore_for_file: unnecessary_brace_in_string_interps, unnecessary_this
+  @override
+  Set<GeneratedColumn> get $primaryKey => const {};
+  @override
+  Question map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return Question(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      question: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}question'])!,
+      answer: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}answer'])!,
+      choice1: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}choice1'])!,
+      choice2: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}choice2'])!,
+      choice3: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}choice3'])!,
+      explanation: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}explanation'])!,
+      isCorrect: attachedDatabase.typeMapping
+          .read(DriftSqlType.bool, data['${effectivePrefix}is_correct'])!,
+    );
+  }
+
+  @override
+  $QuestionsTable createAlias(String alias) {
+    return $QuestionsTable(attachedDatabase, alias);
+  }
+}
+
 class Question extends DataClass implements Insertable<Question> {
   final int id;
   final String question;
@@ -16,7 +164,7 @@ class Question extends DataClass implements Insertable<Question> {
   final String choice3;
   final String explanation;
   final bool isCorrect;
-  Question(
+  const Question(
       {required this.id,
       required this.question,
       required this.answer,
@@ -25,27 +173,6 @@ class Question extends DataClass implements Insertable<Question> {
       required this.choice3,
       required this.explanation,
       required this.isCorrect});
-  factory Question.fromData(Map<String, dynamic> data, {String? prefix}) {
-    final effectivePrefix = prefix ?? '';
-    return Question(
-      id: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
-      question: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}question'])!,
-      answer: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}answer'])!,
-      choice1: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}choice1'])!,
-      choice2: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}choice2'])!,
-      choice3: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}choice3'])!,
-      explanation: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}explanation'])!,
-      isCorrect: const BoolType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}is_correct'])!,
-    );
-  }
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -162,6 +289,7 @@ class QuestionsCompanion extends UpdateCompanion<Question> {
   final Value<String> choice3;
   final Value<String> explanation;
   final Value<bool> isCorrect;
+  final Value<int> rowid;
   const QuestionsCompanion({
     this.id = const Value.absent(),
     this.question = const Value.absent(),
@@ -171,6 +299,7 @@ class QuestionsCompanion extends UpdateCompanion<Question> {
     this.choice3 = const Value.absent(),
     this.explanation = const Value.absent(),
     this.isCorrect = const Value.absent(),
+    this.rowid = const Value.absent(),
   });
   QuestionsCompanion.insert({
     required int id,
@@ -181,6 +310,7 @@ class QuestionsCompanion extends UpdateCompanion<Question> {
     required String choice3,
     required String explanation,
     this.isCorrect = const Value.absent(),
+    this.rowid = const Value.absent(),
   })  : id = Value(id),
         question = Value(question),
         answer = Value(answer),
@@ -197,6 +327,7 @@ class QuestionsCompanion extends UpdateCompanion<Question> {
     Expression<String>? choice3,
     Expression<String>? explanation,
     Expression<bool>? isCorrect,
+    Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -207,6 +338,7 @@ class QuestionsCompanion extends UpdateCompanion<Question> {
       if (choice3 != null) 'choice3': choice3,
       if (explanation != null) 'explanation': explanation,
       if (isCorrect != null) 'is_correct': isCorrect,
+      if (rowid != null) 'rowid': rowid,
     });
   }
 
@@ -218,7 +350,8 @@ class QuestionsCompanion extends UpdateCompanion<Question> {
       Value<String>? choice2,
       Value<String>? choice3,
       Value<String>? explanation,
-      Value<bool>? isCorrect}) {
+      Value<bool>? isCorrect,
+      Value<int>? rowid}) {
     return QuestionsCompanion(
       id: id ?? this.id,
       question: question ?? this.question,
@@ -228,6 +361,7 @@ class QuestionsCompanion extends UpdateCompanion<Question> {
       choice3: choice3 ?? this.choice3,
       explanation: explanation ?? this.explanation,
       isCorrect: isCorrect ?? this.isCorrect,
+      rowid: rowid ?? this.rowid,
     );
   }
 
@@ -258,6 +392,9 @@ class QuestionsCompanion extends UpdateCompanion<Question> {
     if (isCorrect.present) {
       map['is_correct'] = Variable<bool>(isCorrect.value);
     }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
     return map;
   }
 
@@ -271,62 +408,55 @@ class QuestionsCompanion extends UpdateCompanion<Question> {
           ..write('choice2: $choice2, ')
           ..write('choice3: $choice3, ')
           ..write('explanation: $explanation, ')
-          ..write('isCorrect: $isCorrect')
+          ..write('isCorrect: $isCorrect, ')
+          ..write('rowid: $rowid')
           ..write(')'))
         .toString();
   }
 }
 
-class $QuestionsTable extends Questions
-    with TableInfo<$QuestionsTable, Question> {
-  final GeneratedDatabase _db;
+class $RecordsTable extends Records with TableInfo<$RecordsTable, Record> {
+  @override
+  final GeneratedDatabase attachedDatabase;
   final String? _alias;
-  $QuestionsTable(this._db, [this._alias]);
-  final VerificationMeta _idMeta = const VerificationMeta('id');
-  late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
+  $RecordsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
       'id', aliasedName, false,
-      typeName: 'INTEGER', requiredDuringInsert: true);
-  final VerificationMeta _questionMeta = const VerificationMeta('question');
-  late final GeneratedColumn<String?> question = GeneratedColumn<String?>(
-      'question', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
-  final VerificationMeta _answerMeta = const VerificationMeta('answer');
-  late final GeneratedColumn<String?> answer = GeneratedColumn<String?>(
-      'answer', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
-  final VerificationMeta _choice1Meta = const VerificationMeta('choice1');
-  late final GeneratedColumn<String?> choice1 = GeneratedColumn<String?>(
-      'choice1', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
-  final VerificationMeta _choice2Meta = const VerificationMeta('choice2');
-  late final GeneratedColumn<String?> choice2 = GeneratedColumn<String?>(
-      'choice2', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
-  final VerificationMeta _choice3Meta = const VerificationMeta('choice3');
-  late final GeneratedColumn<String?> choice3 = GeneratedColumn<String?>(
-      'choice3', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
-  final VerificationMeta _explanationMeta =
-      const VerificationMeta('explanation');
-  late final GeneratedColumn<String?> explanation = GeneratedColumn<String?>(
-      'explanation', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
-  final VerificationMeta _isCorrectMeta = const VerificationMeta('isCorrect');
-  late final GeneratedColumn<bool?> isCorrect = GeneratedColumn<bool?>(
-      'is_correct', aliasedName, false,
-      typeName: 'INTEGER',
-      requiredDuringInsert: false,
-      defaultConstraints: 'CHECK (is_correct IN (0, 1))',
-      defaultValue: Constant(false));
+      type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _dateMeta = const VerificationMeta('date');
+  @override
+  late final GeneratedColumn<String> date = GeneratedColumn<String>(
+      'date', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _numberOfQuestionMeta =
+      const VerificationMeta('numberOfQuestion');
+  @override
+  late final GeneratedColumn<int> numberOfQuestion = GeneratedColumn<int>(
+      'number_of_question', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _numberOfCorrectMeta =
+      const VerificationMeta('numberOfCorrect');
+  @override
+  late final GeneratedColumn<int> numberOfCorrect = GeneratedColumn<int>(
+      'number_of_correct', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
+  static const VerificationMeta _correctRateMeta =
+      const VerificationMeta('correctRate');
+  @override
+  late final GeneratedColumn<int> correctRate = GeneratedColumn<int>(
+      'correct_rate', aliasedName, false,
+      type: DriftSqlType.int, requiredDuringInsert: true);
   @override
   List<GeneratedColumn> get $columns =>
-      [id, question, answer, choice1, choice2, choice3, explanation, isCorrect];
+      [id, date, numberOfQuestion, numberOfCorrect, correctRate];
   @override
-  String get aliasedName => _alias ?? 'questions';
+  String get aliasedName => _alias ?? 'records';
   @override
-  String get actualTableName => 'questions';
+  String get actualTableName => 'records';
   @override
-  VerificationContext validateIntegrity(Insertable<Question> instance,
+  VerificationContext validateIntegrity(Insertable<Record> instance,
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
@@ -335,62 +465,61 @@ class $QuestionsTable extends Questions
     } else if (isInserting) {
       context.missing(_idMeta);
     }
-    if (data.containsKey('question')) {
-      context.handle(_questionMeta,
-          question.isAcceptableOrUnknown(data['question']!, _questionMeta));
-    } else if (isInserting) {
-      context.missing(_questionMeta);
-    }
-    if (data.containsKey('answer')) {
-      context.handle(_answerMeta,
-          answer.isAcceptableOrUnknown(data['answer']!, _answerMeta));
-    } else if (isInserting) {
-      context.missing(_answerMeta);
-    }
-    if (data.containsKey('choice1')) {
-      context.handle(_choice1Meta,
-          choice1.isAcceptableOrUnknown(data['choice1']!, _choice1Meta));
-    } else if (isInserting) {
-      context.missing(_choice1Meta);
-    }
-    if (data.containsKey('choice2')) {
-      context.handle(_choice2Meta,
-          choice2.isAcceptableOrUnknown(data['choice2']!, _choice2Meta));
-    } else if (isInserting) {
-      context.missing(_choice2Meta);
-    }
-    if (data.containsKey('choice3')) {
-      context.handle(_choice3Meta,
-          choice3.isAcceptableOrUnknown(data['choice3']!, _choice3Meta));
-    } else if (isInserting) {
-      context.missing(_choice3Meta);
-    }
-    if (data.containsKey('explanation')) {
+    if (data.containsKey('date')) {
       context.handle(
-          _explanationMeta,
-          explanation.isAcceptableOrUnknown(
-              data['explanation']!, _explanationMeta));
+          _dateMeta, date.isAcceptableOrUnknown(data['date']!, _dateMeta));
     } else if (isInserting) {
-      context.missing(_explanationMeta);
+      context.missing(_dateMeta);
     }
-    if (data.containsKey('is_correct')) {
-      context.handle(_isCorrectMeta,
-          isCorrect.isAcceptableOrUnknown(data['is_correct']!, _isCorrectMeta));
+    if (data.containsKey('number_of_question')) {
+      context.handle(
+          _numberOfQuestionMeta,
+          numberOfQuestion.isAcceptableOrUnknown(
+              data['number_of_question']!, _numberOfQuestionMeta));
+    } else if (isInserting) {
+      context.missing(_numberOfQuestionMeta);
+    }
+    if (data.containsKey('number_of_correct')) {
+      context.handle(
+          _numberOfCorrectMeta,
+          numberOfCorrect.isAcceptableOrUnknown(
+              data['number_of_correct']!, _numberOfCorrectMeta));
+    } else if (isInserting) {
+      context.missing(_numberOfCorrectMeta);
+    }
+    if (data.containsKey('correct_rate')) {
+      context.handle(
+          _correctRateMeta,
+          correctRate.isAcceptableOrUnknown(
+              data['correct_rate']!, _correctRateMeta));
+    } else if (isInserting) {
+      context.missing(_correctRateMeta);
     }
     return context;
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => <GeneratedColumn>{};
+  Set<GeneratedColumn> get $primaryKey => const {};
   @override
-  Question map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return Question.fromData(data,
-        prefix: tablePrefix != null ? '$tablePrefix.' : null);
+  Record map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return Record(
+      id: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}id'])!,
+      date: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}date'])!,
+      numberOfQuestion: attachedDatabase.typeMapping.read(
+          DriftSqlType.int, data['${effectivePrefix}number_of_question'])!,
+      numberOfCorrect: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}number_of_correct'])!,
+      correctRate: attachedDatabase.typeMapping
+          .read(DriftSqlType.int, data['${effectivePrefix}correct_rate'])!,
+    );
   }
 
   @override
-  $QuestionsTable createAlias(String alias) {
-    return $QuestionsTable(_db, alias);
+  $RecordsTable createAlias(String alias) {
+    return $RecordsTable(attachedDatabase, alias);
   }
 }
 
@@ -400,27 +529,12 @@ class Record extends DataClass implements Insertable<Record> {
   final int numberOfQuestion;
   final int numberOfCorrect;
   final int correctRate;
-  Record(
+  const Record(
       {required this.id,
       required this.date,
       required this.numberOfQuestion,
       required this.numberOfCorrect,
       required this.correctRate});
-  factory Record.fromData(Map<String, dynamic> data, {String? prefix}) {
-    final effectivePrefix = prefix ?? '';
-    return Record(
-      id: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
-      date: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}date'])!,
-      numberOfQuestion: const IntType().mapFromDatabaseResponse(
-          data['${effectivePrefix}number_of_question'])!,
-      numberOfCorrect: const IntType().mapFromDatabaseResponse(
-          data['${effectivePrefix}number_of_correct'])!,
-      correctRate: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}correct_rate'])!,
-    );
-  }
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -510,12 +624,14 @@ class RecordsCompanion extends UpdateCompanion<Record> {
   final Value<int> numberOfQuestion;
   final Value<int> numberOfCorrect;
   final Value<int> correctRate;
+  final Value<int> rowid;
   const RecordsCompanion({
     this.id = const Value.absent(),
     this.date = const Value.absent(),
     this.numberOfQuestion = const Value.absent(),
     this.numberOfCorrect = const Value.absent(),
     this.correctRate = const Value.absent(),
+    this.rowid = const Value.absent(),
   });
   RecordsCompanion.insert({
     required int id,
@@ -523,6 +639,7 @@ class RecordsCompanion extends UpdateCompanion<Record> {
     required int numberOfQuestion,
     required int numberOfCorrect,
     required int correctRate,
+    this.rowid = const Value.absent(),
   })  : id = Value(id),
         date = Value(date),
         numberOfQuestion = Value(numberOfQuestion),
@@ -534,6 +651,7 @@ class RecordsCompanion extends UpdateCompanion<Record> {
     Expression<int>? numberOfQuestion,
     Expression<int>? numberOfCorrect,
     Expression<int>? correctRate,
+    Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -541,6 +659,7 @@ class RecordsCompanion extends UpdateCompanion<Record> {
       if (numberOfQuestion != null) 'number_of_question': numberOfQuestion,
       if (numberOfCorrect != null) 'number_of_correct': numberOfCorrect,
       if (correctRate != null) 'correct_rate': correctRate,
+      if (rowid != null) 'rowid': rowid,
     });
   }
 
@@ -549,13 +668,15 @@ class RecordsCompanion extends UpdateCompanion<Record> {
       Value<String>? date,
       Value<int>? numberOfQuestion,
       Value<int>? numberOfCorrect,
-      Value<int>? correctRate}) {
+      Value<int>? correctRate,
+      Value<int>? rowid}) {
     return RecordsCompanion(
       id: id ?? this.id,
       date: date ?? this.date,
       numberOfQuestion: numberOfQuestion ?? this.numberOfQuestion,
       numberOfCorrect: numberOfCorrect ?? this.numberOfCorrect,
       correctRate: correctRate ?? this.correctRate,
+      rowid: rowid ?? this.rowid,
     );
   }
 
@@ -577,6 +698,9 @@ class RecordsCompanion extends UpdateCompanion<Record> {
     if (correctRate.present) {
       map['correct_rate'] = Variable<int>(correctRate.value);
     }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
     return map;
   }
 
@@ -587,109 +711,20 @@ class RecordsCompanion extends UpdateCompanion<Record> {
           ..write('date: $date, ')
           ..write('numberOfQuestion: $numberOfQuestion, ')
           ..write('numberOfCorrect: $numberOfCorrect, ')
-          ..write('correctRate: $correctRate')
+          ..write('correctRate: $correctRate, ')
+          ..write('rowid: $rowid')
           ..write(')'))
         .toString();
   }
 }
 
-class $RecordsTable extends Records with TableInfo<$RecordsTable, Record> {
-  final GeneratedDatabase _db;
-  final String? _alias;
-  $RecordsTable(this._db, [this._alias]);
-  final VerificationMeta _idMeta = const VerificationMeta('id');
-  late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
-      'id', aliasedName, false,
-      typeName: 'INTEGER', requiredDuringInsert: true);
-  final VerificationMeta _dateMeta = const VerificationMeta('date');
-  late final GeneratedColumn<String?> date = GeneratedColumn<String?>(
-      'date', aliasedName, false,
-      typeName: 'TEXT', requiredDuringInsert: true);
-  final VerificationMeta _numberOfQuestionMeta =
-      const VerificationMeta('numberOfQuestion');
-  late final GeneratedColumn<int?> numberOfQuestion = GeneratedColumn<int?>(
-      'number_of_question', aliasedName, false,
-      typeName: 'INTEGER', requiredDuringInsert: true);
-  final VerificationMeta _numberOfCorrectMeta =
-      const VerificationMeta('numberOfCorrect');
-  late final GeneratedColumn<int?> numberOfCorrect = GeneratedColumn<int?>(
-      'number_of_correct', aliasedName, false,
-      typeName: 'INTEGER', requiredDuringInsert: true);
-  final VerificationMeta _correctRateMeta =
-      const VerificationMeta('correctRate');
-  late final GeneratedColumn<int?> correctRate = GeneratedColumn<int?>(
-      'correct_rate', aliasedName, false,
-      typeName: 'INTEGER', requiredDuringInsert: true);
-  @override
-  List<GeneratedColumn> get $columns =>
-      [id, date, numberOfQuestion, numberOfCorrect, correctRate];
-  @override
-  String get aliasedName => _alias ?? 'records';
-  @override
-  String get actualTableName => 'records';
-  @override
-  VerificationContext validateIntegrity(Insertable<Record> instance,
-      {bool isInserting = false}) {
-    final context = VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    } else if (isInserting) {
-      context.missing(_idMeta);
-    }
-    if (data.containsKey('date')) {
-      context.handle(
-          _dateMeta, date.isAcceptableOrUnknown(data['date']!, _dateMeta));
-    } else if (isInserting) {
-      context.missing(_dateMeta);
-    }
-    if (data.containsKey('number_of_question')) {
-      context.handle(
-          _numberOfQuestionMeta,
-          numberOfQuestion.isAcceptableOrUnknown(
-              data['number_of_question']!, _numberOfQuestionMeta));
-    } else if (isInserting) {
-      context.missing(_numberOfQuestionMeta);
-    }
-    if (data.containsKey('number_of_correct')) {
-      context.handle(
-          _numberOfCorrectMeta,
-          numberOfCorrect.isAcceptableOrUnknown(
-              data['number_of_correct']!, _numberOfCorrectMeta));
-    } else if (isInserting) {
-      context.missing(_numberOfCorrectMeta);
-    }
-    if (data.containsKey('correct_rate')) {
-      context.handle(
-          _correctRateMeta,
-          correctRate.isAcceptableOrUnknown(
-              data['correct_rate']!, _correctRateMeta));
-    } else if (isInserting) {
-      context.missing(_correctRateMeta);
-    }
-    return context;
-  }
-
-  @override
-  Set<GeneratedColumn> get $primaryKey => <GeneratedColumn>{};
-  @override
-  Record map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return Record.fromData(data,
-        prefix: tablePrefix != null ? '$tablePrefix.' : null);
-  }
-
-  @override
-  $RecordsTable createAlias(String alias) {
-    return $RecordsTable(_db, alias);
-  }
-}
-
 abstract class _$MyDatabase extends GeneratedDatabase {
-  _$MyDatabase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
+  _$MyDatabase(QueryExecutor e) : super(e);
   late final $QuestionsTable questions = $QuestionsTable(this);
   late final $RecordsTable records = $RecordsTable(this);
   @override
-  Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
+  Iterable<TableInfo<Table, Object?>> get allTables =>
+      allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
   List<DatabaseSchemaEntity> get allSchemaEntities => [questions, records];
 }
